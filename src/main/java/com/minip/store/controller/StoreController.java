@@ -39,8 +39,11 @@ public class StoreController {
         String adminValue = sharedData.getAdmin();
         boolean isAdminValueZero = "1".equals(adminValue);
         boolean isTestValueZero = "1".equals(testValue);
-        model.addAttribute("isTestValueZero", isTestValueZero);
+
+        log.info(adminValue);
+        log.info(Boolean.toString(isAdminValueZero));
         model.addAttribute("isAdminValueZero", isAdminValueZero);
+        model.addAttribute("isTestValueZero", isTestValueZero);
         
         List<StoreDto> storeEntity = storeService.searchStoreByEvery(every);
         model.addAttribute("storeList", storeEntity);
@@ -73,21 +76,24 @@ public class StoreController {
         String adminValue = sharedData.getAdmin();
         boolean isAdminValueZero = "1".equals(adminValue);
         boolean isTestValueZero = "1".equals(testValue);
-        model.addAttribute("isTestValueZero", isTestValueZero);
         model.addAttribute("isAdminValueZero", isAdminValueZero);
+        model.addAttribute("isTestValueZero", isTestValueZero);
+
+        log.info(adminValue);
+        log.info(Boolean.toString(isAdminValueZero));
         List<Store> storeEntityList = (List<Store>)storeRepository.findAll();
         model.addAttribute("storeList", storeEntityList);
 
         if(!isTestValueZero) {
             return "redirect:/login/";
         } else {
-            return "stores/index";
+            return "stores/show";
         }
     }
 
     @GetMapping("/stores/map/{site}")
     public String showBySite(@PathVariable String site, Model model) {
-        if(site.equals("전체")) {
+        if (site.equals("전체")) {
             site = "서울";
         }
         String testValue = sharedData.getTest();
