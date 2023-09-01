@@ -1,0 +1,21 @@
+{{>layouts/header2}}
+
+<body>
+    <form class="container" action="/members/create" method="post">
+        <div class="mb-3">
+            <label class="form-label">name</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">password</label>
+            <input type="password" class="form-control" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/login" class="btn btn-primary">Back</a>
+    </form>
+    {{#error}}
+    <p style="color: red;">{{error}}</p>
+    {{/error}}
+</body>
+
+{{>layouts/footer}}
