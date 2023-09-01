@@ -53,11 +53,10 @@ public class MemberController {
     @PostMapping("/login")
     public String processLogin(String name, String password, String mem_role, RedirectAttributes attributes) {
         List<MemberDto> member = memberService.searchMemberByMatch(name, password);
-
-        if (!member.isEmpty() & name == "root") {
+        
+        if (!member.isEmpty() && name.equals("root")) {
             sharedData.setTest("1");
             sharedData.setAdmin("1");
-            // 로그인 성공: stores 페이지로 이동
             return "redirect:/stores";
 
         }else if(!member.isEmpty())  {
@@ -65,8 +64,8 @@ public class MemberController {
             return "redirect:/stores";
 
         } else {
-            attributes.addFlashAttribute("error", "아이디 혹은 비밀번호가 틀렸습니다."); // 에러 메시지 전달
-            return "redirect:/login"; // 다시 로그인 화면으로 리다이렉트
+            attributes.addFlashAttribute("error", "아이디 혹은 비밀번호가 틀렸습니다.");
+            return "redirect:/login";
         }
     }
 
@@ -89,6 +88,7 @@ public class MemberController {
     @GetMapping("/logout")
     public String logout() {
         sharedData.setTest("0");
+        sharedData.setAdmin("0");
         return "redirect:/login";
     }
     
@@ -98,6 +98,7 @@ public class MemberController {
         String testValue = sharedData.getTest();
         boolean isTestValueZero = "1".equals(testValue);
         model.addAttribute("isTestValueZero", isTestValueZero);
+
         List<Member> memberEntityList = (List<Member>)memberRepository.findAll();
         model.addAttribute("memberList", memberEntityList);
 
