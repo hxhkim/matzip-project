@@ -35,6 +35,11 @@
             border-color: #000000;
             color: white;
         }
+        .btn-outline-success.logout-button {
+            min-width: 100px;
+            border-color: #000000;
+            background-color: #000000;
+        }
         .no-underline {
             text-decoration: none;
         }
@@ -91,7 +96,9 @@
             <form class="d-flex">
                 <input id="searchInput" class="form-control me-2" type="search" placeholder="검색어를 입력하세요" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit" onclick="performSearch()">검색</button>
-                <button><a href="/logout">로그아웃</a></button>
+                <button class="btn btn-outline-success logout-button"><a href="/logout" style="color: #FFFFFF; text-decoration: none">로그아웃</a></button>
+
+
             </form>
             <script>
                 function performSearch() {
