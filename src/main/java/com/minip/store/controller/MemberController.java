@@ -92,7 +92,6 @@ public class MemberController {
         return "redirect:/login";
     }
     
-
     @GetMapping("/members")
     public String index(Model model) {
         String testValue = sharedData.getTest();
@@ -100,8 +99,13 @@ public class MemberController {
         model.addAttribute("isTestValueZero", isTestValueZero);
 
         List<Member> memberEntityList = (List<Member>)memberRepository.findAll();
-        model.addAttribute("memberList", memberEntityList);
+    
+        if (!memberEntityList.isEmpty()) {
+            memberEntityList.remove(0);
+        }
 
+        model.addAttribute("memberList", memberEntityList);
+        
         if(!isTestValueZero) {
             return "redirect:/login/";
         } else {
