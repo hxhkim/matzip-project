@@ -4,15 +4,15 @@
     <div style="border: 1px solid #ddd; padding: 20px; background-color: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
         <h1>로그인하기</h1>
         <form action="/login" method="post" style="width: 300px; text-align: center;">
-            <label for="name">아이디</label>
+            <label for="name">아이디 </label>
             <input type="text" id="name" name="name" required style="margin-bottom: 10px;"><br>
             
             <label for="password">비밀번호</label>
             <input type="password" id="password" name="password" required style="margin-bottom: 10px;"><br>
             
             <div style="display: flex; justify-content: space-between;">
-                <button type="submit" class="btn btn-outline-success" style="background-color: #000000; border-color: #000000; color: white;">로그인</button>
-                <a href="/members/new" class="btn btn-outline-success" style="background-color: #000000; border-color: #000000; color: white;">회원 가입</a>
+                <button type="submit" class="btn btn-outline-success">로그인</button>
+                <a href="/members/new" class="btn btn-outline-success">회원가입</a>
             </div>
         </form>
         {{#error}}
